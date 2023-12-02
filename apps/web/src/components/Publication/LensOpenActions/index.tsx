@@ -9,10 +9,12 @@ import { Modal, Tooltip } from '@hey/ui';
 import cn from '@hey/ui/cn';
 import { Leafwatch } from '@lib/leafwatch';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import plur from 'plur';
 import type { FC } from 'react';
 import { useState } from 'react';
 
+import { FOREST_FEED_APP_NAME } from '../../../constants';
 import List from './List';
 
 interface OpenActionProps {
@@ -33,18 +35,28 @@ const OpenAction: FC<OpenActionProps> = ({ publication, showCount }) => {
     ? 'w-[17px] sm:w-[20px]'
     : 'w-[15px] sm:w-[18px]';
 
+  const isForestFeed = publication?.publishedOn?.id === FOREST_FEED_APP_NAME;
+
   return (
     <>
       <div
         className={cn(
-          hasActed ? 'text-brand-500' : 'ld-text-gray-500',
+          hasActed
+            ? isForestFeed
+              ? 'text-[#78B682]'
+              : 'text-brand-500'
+            : 'ld-text-gray-500',
           'flex items-center space-x-1'
         )}
       >
         <motion.button
           className={cn(
             hasActed
-              ? 'hover:bg-brand-300/20 outline-brand-500'
+              ? `${
+                  isForestFeed
+                    ? 'hover:bg-[#78B682]/20'
+                    : 'hover:bg-brand-300/20'
+                } outline-brand-500`
               : 'outline-gray-400 hover:bg-gray-300/20',
             'rounded-full p-1.5 outline-offset-2'
           )}
@@ -64,14 +76,39 @@ const OpenAction: FC<OpenActionProps> = ({ publication, showCount }) => {
             withDelay
           >
             {hasActed ? (
-              <RectangleStackIconSolid className={iconClassName} />
+              isForestFeed ? (
+                <Image
+                  src="/TreeCollected.svg"
+                  alt="collected-ferest-feed"
+                  width={26}
+                  height={26}
+                  className={iconClassName}
+                  draggable={false}
+                />
+              ) : (
+                <RectangleStackIconSolid className={iconClassName} />
+              )
+            ) : isForestFeed ? (
+              <Image
+                src="/TreeCollect.svg"
+                alt="collect-ferest-feed"
+                width={26}
+                height={26}
+                className={iconClassName}
+                draggable={false}
+              />
             ) : (
               <RectangleStackIcon className={iconClassName} />
             )}
           </Tooltip>
         </motion.button>
         {countOpenActions > 0 && !showCount ? (
-          <span className="text-[11px] sm:text-xs">
+          <span
+            className={`text-[11px] sm:text-xs ${
+              publication?.publishedOn?.id === FOREST_FEED_APP_NAME &&
+              'text-[#78B682]'
+            }`}
+          >
             {nFormatter(countOpenActions)}
           </span>
         ) : null}

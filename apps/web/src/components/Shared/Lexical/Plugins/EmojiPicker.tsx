@@ -80,9 +80,13 @@ const EmojiPickerPlugin: FC = () => {
   const [emojis, setEmojis] = useState<Emoji[]>([]);
 
   const fetchEmojis = async () => {
-    const res = await fetch(`${STATIC_ASSETS_URL}/emoji.json`);
-    const data = await res.json();
-    setEmojis(data);
+    try {
+      const res = await fetch(`${STATIC_ASSETS_URL}/emoji.json`);
+      const data = await res.json();
+      setEmojis(data);
+    } catch (error: any) {
+      console.log(error, 'error is here');
+    }
   };
 
   useEffectOnce(() => {
