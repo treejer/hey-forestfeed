@@ -23,7 +23,6 @@ import { useFeatureFlagsStore } from 'src/store/persisted/useFeatureFlagsStore';
 import useProfileStore from 'src/store/persisted/useProfileStore';
 import { useEffectOnce } from 'usehooks-ts';
 
-import { FOREST_FEED_APP_NAME } from '../../constants';
 import FullPublication from './FullPublication';
 import OnchainMeta from './OnchainMeta';
 import RelevantPeople from './RelevantPeople';
@@ -68,10 +67,6 @@ const ViewPublication: NextPage = () => {
     : publication;
   const canComment =
     targetPublication?.operations.canComment === TriStateValue.Yes;
-
-  if (publication?.publishedOn?.id !== FOREST_FEED_APP_NAME) {
-    return <Custom404 />;
-  }
 
   return (
     <GridLayout>
