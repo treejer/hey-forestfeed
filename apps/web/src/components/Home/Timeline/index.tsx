@@ -14,6 +14,8 @@ import useProfileStore from 'src/store/persisted/useProfileStore';
 import { useTimelineFilterStore } from 'src/store/persisted/useTimelineFilterStore';
 import { useTransactionStore } from 'src/store/persisted/useTransactionStore';
 
+import { FOREST_FEED_APP_NAME } from '../../../constants';
+
 const Timeline: FC = () => {
   const currentProfile = useProfileStore((state) => state.currentProfile);
   const txnQueue = useTransactionStore((state) => state.txnQueue);
@@ -48,6 +50,9 @@ const Timeline: FC = () => {
   const request: FeedRequest = {
     where: {
       for: seeThroughProfile?.id ?? currentProfile?.id,
+      metadata: {
+        publishedOn: [FOREST_FEED_APP_NAME]
+      },
       feedEventItemTypes: getFeedEventItems()
     }
   };

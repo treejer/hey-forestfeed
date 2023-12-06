@@ -1,3 +1,4 @@
+import CreateCampaign from '@components/Home/Sidebar/CreateCampaign';
 import Footer from '@components/Shared/Footer';
 import { type FC, memo } from 'react';
 import useProfileStore from 'src/store/persisted/useProfileStore';
@@ -18,6 +19,7 @@ const Sidebar: FC = () => {
   return (
     <>
       {/* <Gitcoin /> */}
+      <CreateCampaign />
       {loggedOut && <Waitlist />}
       {loggedInWithProfile && <HeyMembershipNft />}
       {/* Onboarding steps */}

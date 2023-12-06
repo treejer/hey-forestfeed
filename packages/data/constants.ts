@@ -22,7 +22,7 @@ export const REWARDS_ADDRESS = '0xf618330f51fa54ce5951d627ee150c0fdadeba43';
 export const ADDRESS_PLACEHOLDER = '0x03Ba3...7EF';
 
 // Application
-export const APP_NAME = 'Hey';
+export const APP_NAME = 'Hey ForestFeed';
 export const DESCRIPTION = `${APP_NAME}.xyz is a decentralized, and permissionless social media app built with Lens Protocol 🌿`;
 export const APP_VERSION = packageJson.version;
 export const BRAND_COLOR = '#FB3A5D';

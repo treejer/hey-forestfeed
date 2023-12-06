@@ -13,6 +13,8 @@ import { useTimelineStore } from 'src/store/non-persisted/useTimelineStore';
 import useProfileStore from 'src/store/persisted/useProfileStore';
 import { useTransactionStore } from 'src/store/persisted/useTransactionStore';
 
+import { FOREST_FEED_APP_NAME } from '../../constants';
+
 const Highlights: FC = () => {
   const currentProfile = useProfileStore((state) => state.currentProfile);
   const txnQueue = useTransactionStore((state) => state.txnQueue);
@@ -25,7 +27,10 @@ const Highlights: FC = () => {
 
   // Variables
   const request: FeedHighlightsRequest = {
-    where: { for: seeThroughProfile?.id ?? currentProfile?.id },
+    where: {
+      for: seeThroughProfile?.id ?? currentProfile?.id,
+      metadata: { publishedOn: [FOREST_FEED_APP_NAME] }
+    },
     limit: LimitType.TwentyFive
   };
 

@@ -17,6 +17,8 @@ import { type FC } from 'react';
 import { useInView } from 'react-cool-inview';
 import { useImpressionsStore } from 'src/store/non-persisted/useImpressionsStore';
 
+import { FOREST_FEED_APP_NAME } from '../../constants';
+
 interface FeedProps {
   focus?: PublicationMetadataMainFocusType;
   feedType?: ExplorePublicationsOrderByType;
@@ -34,7 +36,10 @@ const Feed: FC<FeedProps> = ({
   const request: ExplorePublicationRequest = {
     where: {
       customFilters: [CustomFiltersType.Gardeners],
-      metadata: { ...(focus && { mainContentFocus: [focus] }) }
+      metadata: {
+        ...(focus && { mainContentFocus: [focus] }),
+        publishedOn: [FOREST_FEED_APP_NAME]
+      }
     },
     orderBy: feedType,
     limit: LimitType.TwentyFive

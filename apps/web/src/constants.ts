@@ -5,8 +5,10 @@ export const CHAIN_ID = IS_MAINNET ? polygon.id : polygonMumbai.id;
 
 export const FOREST_FEED_APP_NAME =
   process.env.NEXT_PUBLIC_FOREST_FEED_APP_NAME;
-export const FOREST_FEED_API_URL = process.env.NEXT_PUBLIC_FOREST_FEED_API_URL;
-export const FOREST_FEED_APP_URL = process.env.NEXT_PUBLIC_FOREST_FEED_APP_URL;
+export const FOREST_FEED_API_URL = process.env
+  .NEXT_PUBLIC_FOREST_FEED_API_URL as string;
+export const FOREST_FEED_APP_URL = process.env
+  .NEXT_PUBLIC_FOREST_FEED_APP_URL as string;
 
 export enum CampaignStatus {
   active,

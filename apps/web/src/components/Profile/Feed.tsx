@@ -16,6 +16,8 @@ import { ProfileFeedType } from 'src/enums';
 import { useImpressionsStore } from 'src/store/non-persisted/useImpressionsStore';
 import { useProfileFeedStore } from 'src/store/non-persisted/useProfileFeedStore';
 
+import { FOREST_FEED_APP_NAME } from '../../constants';
+
 interface FeedProps {
   profile: Profile;
   type:
@@ -64,10 +66,14 @@ const Feed: FC<FeedProps> = ({ profile, type }) => {
               PublicationType.Comment,
               PublicationType.Mirror
             ];
-  const metadata =
-    type === ProfileFeedType.Media
+  const metadata: PublicationsRequest['where']['metadata'] | null = {
+    ...(type !== ProfileFeedType.Replies
+      ? { publishedOn: [FOREST_FEED_APP_NAME] }
+      : {}),
+    ...(type === ProfileFeedType.Media
       ? { mainContentFocus: getMediaFilters() }
-      : null;
+      : {})
+  };
   const request: PublicationsRequest = {
     where: {
       publicationTypes,

@@ -38,7 +38,6 @@ const CampaignInfo: FC<CampaignInfoProps> = ({ publicationId }) => {
         error: '',
         loading: false
       });
-      console.log(campaignRes.data, 'campaign is here');
     } catch (error: any) {
       console.log(error, 'error is fetch campaign detail');
       setCampaignDetail((prevState) => ({
@@ -92,7 +91,7 @@ const CampaignInfo: FC<CampaignInfoProps> = ({ publicationId }) => {
   const CampaignDetail = () => {
     if (campaignDetail?.loading) {
       return (
-        <div className="flex flex-col">
+        <div className="flex flex-col dark:bg-gray-900">
           <div className="horizontal-loader w-full">
             <div />
           </div>
@@ -105,14 +104,14 @@ const CampaignInfo: FC<CampaignInfoProps> = ({ publicationId }) => {
 
     if (campaignDetail?.error || !campaignDetail.data) {
       return (
-        <div className="flex h-20 items-center justify-center rounded-xl bg-white">
+        <div className="flex h-20 items-center justify-center rounded-xl bg-white dark:bg-gray-900">
           <p className="text-center">{campaignDetail.error}</p>
         </div>
       );
     }
 
     return (
-      <div className="min-h-20 rounded-xl bg-white p-3">
+      <div className="min-h-20 rounded-xl bg-white p-3 dark:bg-gray-900">
         <p className="mb-3 text-center font-bold">Campaign</p>
         <Item
           name="Title"
@@ -149,7 +148,7 @@ const CampaignInfo: FC<CampaignInfoProps> = ({ publicationId }) => {
           name="status"
           value={campaignStatus(campaignDetail.data.status)}
           showLabel={false}
-          className="w-full items-center justify-center rounded-[5px] bg-[#EBF1E9] py-1"
+          className="w-full items-center justify-center rounded-[5px] bg-[#EBF1E9] py-1 dark:text-black"
         />
       </div>
     );

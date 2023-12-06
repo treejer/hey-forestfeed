@@ -12,6 +12,8 @@ import { useEffect, useState } from 'react';
 import { useInView } from 'react-cool-inview';
 import useProfileStore from 'src/store/persisted/useProfileStore';
 
+import { FOREST_FEED_APP_NAME } from '../../constants';
+
 interface AlgorithmicFeedProps {
   feedType: HomeFeedType;
 }
@@ -38,7 +40,12 @@ const AlgorithmicFeed: FC<AlgorithmicFeedProps> = ({ feedType }) => {
   }, [feedType, currentProfile?.id]);
 
   const request: PublicationsRequest = {
-    where: { publicationIds },
+    where: {
+      publicationIds,
+      metadata: {
+        publishedOn: [FOREST_FEED_APP_NAME]
+      }
+    },
     limit
   };
 

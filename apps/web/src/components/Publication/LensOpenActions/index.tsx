@@ -1,3 +1,4 @@
+import { TreeCollectedIcon, TreeCollectIcon } from '@components/Common/Icon';
 import { RectangleStackIcon } from '@heroicons/react/24/outline';
 import { RectangleStackIcon as RectangleStackIconSolid } from '@heroicons/react/24/solid';
 import { PUBLICATION } from '@hey/data/tracking';
@@ -9,10 +10,9 @@ import { Modal, Tooltip } from '@hey/ui';
 import cn from '@hey/ui/cn';
 import { Leafwatch } from '@lib/leafwatch';
 import { motion } from 'framer-motion';
-import Image from 'next/image';
 import plur from 'plur';
 import type { FC } from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 import { FOREST_FEED_APP_NAME } from '../../../constants';
 import List from './List';
@@ -77,26 +77,12 @@ const OpenAction: FC<OpenActionProps> = ({ publication, showCount }) => {
           >
             {hasActed ? (
               isForestFeed ? (
-                <Image
-                  src="/TreeCollected.svg"
-                  alt="collected-ferest-feed"
-                  width={26}
-                  height={26}
-                  className={iconClassName}
-                  draggable={false}
-                />
+                <TreeCollectedIcon className={iconClassName} />
               ) : (
                 <RectangleStackIconSolid className={iconClassName} />
               )
             ) : isForestFeed ? (
-              <Image
-                src="/TreeCollect.svg"
-                alt="collect-ferest-feed"
-                width={26}
-                height={26}
-                className={iconClassName}
-                draggable={false}
-              />
+              <TreeCollectIcon className={iconClassName} />
             ) : (
               <RectangleStackIcon className={iconClassName} />
             )}
