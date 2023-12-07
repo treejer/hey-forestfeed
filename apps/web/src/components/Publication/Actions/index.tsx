@@ -68,7 +68,7 @@ const PublicationActions: FC<PublicationActionsProps> = ({
       </span>
       {publication?.publishedOn?.id === FOREST_FEED_APP_NAME &&
       publication.__typename === 'Post' ? (
-        <div className="mt-2 flex w-full items-center justify-between rounded-[16px] bg-[#EBF1E9] p-3 text-sm group-hover:bg-black dark:bg-gray-900">
+        <div className="mt-2 flex w-full items-center justify-between rounded-[16px] bg-[#EBF1E9] p-3 text-sm  dark:bg-gray-900 dark:group-hover:bg-black">
           <div className="mr-3">
             <p className="font-bold">Impactful Post</p>
             <p className="flex items-center">
