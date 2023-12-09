@@ -15,7 +15,7 @@ const Footer: FC = () => {
     >
       <div className="mt-4 flex flex-wrap gap-x-[12px] px-3 lg:px-0">
         <span className="ld-text-gray-500 font-bold">
-          &copy; {new Date().getFullYear()} {APP_NAME.replace(/\s/g, '')}.xyz
+          &copy; {new Date().getFullYear()} hey-ff.treejer.com
         </span>
         <Link href="/terms">Terms</Link>
         <Link href="/privacy">Privacy</Link>

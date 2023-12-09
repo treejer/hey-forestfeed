@@ -167,10 +167,10 @@ const CampaignInfo: FC<CampaignInfoProps> = ({ publicationId }) => {
         arrow={false}
         interactive
         zIndex={1000}
-        className="preview-tippy-content hidden w-64 !rounded-xl border !bg-white !text-black dark:border-gray-700 dark:!bg-black dark:!text-white md:block"
+        className="preview-tippy-content block w-64 !rounded-xl border !bg-white !text-black dark:border-gray-700 dark:!bg-black dark:!text-white"
         appendTo={() => document.body}
       >
-        <span>
+        <span onClick={(e) => e.stopPropagation()}>
           <InformationCircleIcon className={iconClassName} />
         </span>
       </Tippy>
